@@ -10,7 +10,7 @@ public class Searcher {
         for (Map.Entry<String, String> map : flights.entrySet()) {
             if (map.getKey().equals(flight.getDeparturePort())) {
                 if (map.getValue().equals(flight.getArrivalPort())) {
-                    System.out.println("Choosen flight is available.");
+                    System.out.println("Choosen flight from " + departure + " to " + arrival +  " is available.");
                     flightFound = true;
                 } else {
                     departure = map.getValue();
@@ -23,7 +23,7 @@ public class Searcher {
 
                 if (map.getKey().equals(departure)) {
                     if (map.getValue().equals(arrival)) {
-                        System.out.println("Found flight with one change in " + departure);
+                        System.out.println("Found flight from choosen airport to " + arrival + " with one change in " + departure);
                         flightFound = true;
                     } else {
                         throw new RouteNotFoundException("No flights");
