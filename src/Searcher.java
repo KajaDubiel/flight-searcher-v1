@@ -6,30 +6,34 @@ public class Searcher {
     public void searchFlight(Flight flight, HashMap<String, String> flights) throws RouteNotFoundException{
         String departure = flight.getDeparturePort();
         String arrival = flight.getArrivalPort();
-        boolean flightFound = false;
-        for (Map.Entry<String, String> map : flights.entrySet()) {
-            if (map.getKey().equals(flight.getDeparturePort())) {
-                if (map.getValue().equals(flight.getArrivalPort())) {
-                    System.out.println("Choosen flight from " + departure + " to " + arrival +  " is available.");
-                    flightFound = true;
+        String newDeparture;
+        String route = departure;
+        boolean foundFlight = false;
+
+        for(Map.Entry<String, String> map: flights.entrySet()){
+            if(map.getKey().equals(departure)){
+                if(map.getValue().equals(arrival)){
+                    System.out.println("Choosen flight from " + departure + " to " + arrival + " is available.");
+                    foundFlight = true;
+                    break;
                 } else {
-                    departure = map.getValue();
+                    newDeparture = map.getValue();
                 }
-            }
-        }
 
-        if(flightFound != true) {
-            for (Map.Entry<String, String> map : flights.entrySet()) {
-
-                if (map.getKey().equals(departure)) {
-                    if (map.getValue().equals(arrival)) {
-                        System.out.println("Found flight from choosen airport to " + arrival + " with one change in " + departure);
-                        flightFound = true;
-                    } else {
-                        throw new RouteNotFoundException("No flights");
+                for(Map.Entry<String, String> mapWithChange: flights.entrySet()){
+                    if(mapWithChange.getKey().equals(newDeparture)){
+                        if(mapWithChange.getValue().equals(arrival)){
+                            route = route + " - " + newDeparture;
+                            System.out.println("Route with one change in " + newDeparture + " found. Recomended schedule: " + route +  " - " + arrival);
+                            foundFlight = true;
+                            break;
+                        }
                     }
                 }
             }
+        }
+        if(foundFlight == false){
+            throw new RouteNotFoundException("Choosen flight is not available");
         }
     }
 }

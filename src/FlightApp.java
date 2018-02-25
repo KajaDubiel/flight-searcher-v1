@@ -12,13 +12,15 @@ public class FlightApp {
         Flight demandFlight = new Flight(departure, arrival);
 
         HashMap<String, String> availableFlights = new HashMap<>();
+
         availableFlights.put("Szczecin", "Dublin");
+        availableFlights.put("Moskwa", "Berlin");
         availableFlights.put("Dublin", "Rzym");
         availableFlights.put("Neapol", "Rzym");
+        availableFlights.put("Berlin", "Porto");
         availableFlights.put("Rzym", "Warszawa");
         availableFlights.put("Warszawa", "Moskwa");
         availableFlights.put("Majorka", "Neapol");
-        availableFlights.put("Neapol", "Berlin");
 
         Searcher searcher = new Searcher();
         try{
