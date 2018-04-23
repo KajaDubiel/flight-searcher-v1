@@ -13,6 +13,8 @@ public class FlightApp {
 
         HashMap<String, String> availableFlights = new HashMap<>();
 
+        //Szczecin - Dublin - Rzym - Warszawa
+        //Moskwa - Berlin - Porto - Helsinki
         availableFlights.put("Szczecin", "Dublin");
         availableFlights.put("Moskwa", "Berlin");
         availableFlights.put("Dublin", "Rzym");
@@ -21,11 +23,13 @@ public class FlightApp {
         availableFlights.put("Rzym", "Warszawa");
         availableFlights.put("Warszawa", "Moskwa");
         availableFlights.put("Majorka", "Neapol");
+        availableFlights.put("Porto", "Helsinki");
 
         Searcher searcher = new Searcher();
-        try{
+
+        try {
             searcher.searchFlight(demandFlight, availableFlights);
-        } catch (RouteNotFoundException e){
+        } catch (RouteNotFoundException e) {
             System.out.println("Sorry, there is no flight available");
         }
 
